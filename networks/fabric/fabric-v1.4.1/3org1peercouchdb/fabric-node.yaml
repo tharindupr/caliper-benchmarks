@@ -19,12 +19,12 @@ mutual-tls: false
 caliper:
   blockchain: fabric
   command:
-    start: export FABRIC_VERSION=1.4.1;docker-compose -f networks/prometheus-grafana/docker-compose-fabric.yaml up -d;sleep 3s;docker-compose -f networks/fabric/docker-compose/2org1peercouchdb/docker-compose-prometheus.yaml up -d;sleep 3s
-    end: docker-compose -f networks/prometheus-grafana/docker-compose-fabric.yaml down;docker-compose -f networks/fabric/docker-compose/2org1peercouchdb/docker-compose-prometheus.yaml down;(test -z \"$(docker ps -aq)\") || docker rm $(docker ps -aq);(test -z \"$(docker images dev* -q)\") || docker rmi $(docker images dev* -q);rm -rf /tmp/hfc-*
+    start: export FABRIC_VERSION=1.4.1;docker-compose -f networks/fabric/docker-compose/3org1peercouchdb/docker-compose.yaml up -d;sleep 3s
+    end: docker-compose -f networks/fabric/docker-compose/3org1peercouchdb/docker-compose.yaml down;(test -z \"$(docker ps -aq)\") || docker rm $(docker ps -aq);(test -z \"$(docker images dev* -q)\") || docker rmi $(docker images dev* -q);rm -rf /tmp/hfc-*
 
 info:
   Version: 1.4.1
-  Size: 2 Orgs with 1 Peer
+  Size: 3 Orgs with 1 Peer
   Orderer: Solo
   Distribution: Single Host
   StateDB: CouchDB
@@ -54,6 +54,18 @@ clients:
       clientSignedCert:
         path: networks/fabric/config_solo/crypto-config/peerOrganizations/org2.example.com/users/User1@org2.example.com/msp/signcerts/User1@org2.example.com-cert.pem
 
+  client0.org3.example.com:
+    client:
+      organization: Org3
+      credentialStore:
+        path: /tmp/hfc-kvs/org3
+        cryptoStore:
+          path: /tmp/hfc-cvs/org3
+      clientPrivateKey:
+        path: networks/fabric/config_solo/crypto-config/peerOrganizations/org3.example.com/users/User1@org3.example.com/msp/keystore/key.pem
+      clientSignedCert:
+        path: networks/fabric/config_solo/crypto-config/peerOrganizations/org3.example.com/users/User1@org3.example.com/msp/signcerts/User1@org3.example.com-cert.pem
+
 
 channels:
   mychannel:
@@ -61,7 +73,7 @@ channels:
     definition:
         capabilities: []
         consortium: 'SampleConsortium'
-        msps: ['Org1MSP', 'Org2MSP']
+        msps: ['Org1MSP', 'Org2MSP', 'Org3MSP']
         version: 0
     orderers:
     - orderer.example.com
@@ -69,6 +81,8 @@ channels:
       peer0.org1.example.com:
         eventSource: true
       peer0.org2.example.com:
+        eventSource: true
+      peer0.org3.example.com:
         eventSource: true
 
     chaincodes:
@@ -105,6 +119,17 @@ organizations:
     signedCert:
       path: networks/fabric/config_solo/crypto-config/peerOrganizations/org2.example.com/users/Admin@org2.example.com/msp/signcerts/Admin@org2.example.com-cert.pem
 
+  Org3:
+    mspid: Org3MSP
+    peers:
+    - peer0.org3.example.com
+    certificateAuthorities:
+    - ca.org3.example.com
+    adminPrivateKey:
+      path: networks/fabric/config_solo/crypto-config/peerOrganizations/org3.example.com/users/Admin@org3.example.com/msp/keystore/key.pem
+    signedCert:
+      path: networks/fabric/config_solo/crypto-config/peerOrganizations/org3.example.com/users/Admin@org3.example.com/msp/signcerts/Admin@org3.example.com-cert.pem
+
 orderers:
   orderer.example.com:
     url: grpc://localhost:7050
@@ -124,6 +149,12 @@ peers:
       ssl-target-name-override: peer0.org2.example.com
       grpc.keepalive_time_ms: 600000
 
+  peer0.org3.example.com:
+    url: grpc://localhost:9051
+    grpcOptions:
+      ssl-target-name-override: peer0.org3.example.com
+      grpc.keepalive_time_ms: 600000
+
 certificateAuthorities:
   ca.org1.example.com:
     url: http://localhost:7054
@@ -135,6 +166,14 @@ certificateAuthorities:
 
   ca.org2.example.com:
     url: http://localhost:8054
+    httpOptions:
+      verify: false
+    registrar:
+    - enrollId: admin
+      enrollSecret: adminpw
+
+  ca.org3.example.com:
+    url: http://localhost:9054
     httpOptions:
       verify: false
     registrar:
