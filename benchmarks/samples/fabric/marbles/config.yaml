@@ -16,7 +16,7 @@
 test:
   clients:
     type: local
-    number: 5
+    number: 25
   rounds:
   - label: init
     txNumber:
