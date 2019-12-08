@@ -16,7 +16,7 @@
 test:
   clients:
     type: local
-    number: 25
+    number: 5
   rounds:
   - label: init
     txNumber:
@@ -24,7 +24,7 @@ test:
     rateControl:
     - type: fixed-rate
       opts:
-        tps: 25
+        tps: 5
     callback: benchmarks/samples/fabric/marbles/init.js
   - label: query
     txNumber:
