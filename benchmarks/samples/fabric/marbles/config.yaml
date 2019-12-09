@@ -24,7 +24,7 @@ test:
     rateControl:
     - type: fixed-rate
       opts:
-        tps: 5
+        tps: 100
     callback: benchmarks/samples/fabric/marbles/init.js
   - label: query
     txNumber:
