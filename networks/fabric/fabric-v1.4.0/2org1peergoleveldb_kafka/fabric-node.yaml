@@ -57,7 +57,7 @@ clients:
 
 channels:
     mychannel:
-        configBinary: network/fabric/config_kafka/mychannel.tx
+        configBinary: networks/fabric/config_kafka/mychannel.tx
         created: false
         # definition:
         #     capabilities: []
