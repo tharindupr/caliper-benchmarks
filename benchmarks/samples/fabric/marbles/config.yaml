@@ -20,11 +20,11 @@ test:
   rounds:
   - label: init
     txNumber:
-    - 500
+    - 1000
     rateControl:
     - type: fixed-rate
       opts:
-        tps: 25
+        tps: 50
     callback: benchmarks/samples/fabric/marbles/init.js
   # - label: query
   #   txNumber:
