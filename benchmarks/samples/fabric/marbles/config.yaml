@@ -18,7 +18,7 @@ test:
     type: local
     number: 5
   rounds:
-  - label: init
+  - label: init1
     txNumber:
     - 1000
     rateControl:
@@ -26,6 +26,24 @@ test:
       opts:
         tps: 50
     callback: benchmarks/samples/fabric/marbles/init.js
+  - label: init2
+    txNumber:
+    - 1000
+    rateControl:
+    - type: fixed-rate
+      opts:
+        tps: 75
+    callback: benchmarks/samples/fabric/marbles/init.js
+
+  - label: init3
+    txNumber:
+    - 1000
+    rateControl:
+    - type: fixed-rate
+      opts:
+        tps: 100
+    callback: benchmarks/samples/fabric/marbles/init.js
+  
   # - label: query
   #   txNumber:
   #   - 15
