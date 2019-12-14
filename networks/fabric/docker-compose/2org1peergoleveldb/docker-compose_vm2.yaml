@@ -116,4 +116,4 @@ services:
     # depends_on:
     #   - orderer.example.com
     extra_hosts:
-      - "orderer.example.com:157.190.53.35"
+      - "orderer.example.com:10.128.0.3"
