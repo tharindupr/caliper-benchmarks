@@ -44,7 +44,7 @@ test:
         tps: 100
     callback: benchmarks/samples/fabric/marbles/init.js
 
-  - label: init3
+  - label: init4
     txNumber:
     - 1000
     rateControl:
@@ -53,7 +53,7 @@ test:
         tps: 125
     callback: benchmarks/samples/fabric/marbles/init.js
 
-  - label: init3
+  - label: init5
     txNumber:
     - 1000
     rateControl:
@@ -62,7 +62,7 @@ test:
         tps: 150
     callback: benchmarks/samples/fabric/marbles/init.js
 
-  - label: init3
+  - label: init6
     txNumber:
     - 1000
     rateControl:
@@ -71,7 +71,7 @@ test:
         tps: 175
     callback: benchmarks/samples/fabric/marbles/init.js
   
-  - label: init3
+  - label: init7
     txNumber:
     - 1000
     rateControl:
@@ -80,7 +80,7 @@ test:
         tps: 200
     callback: benchmarks/samples/fabric/marbles/init.js
 
-  - label: init3
+  - label: init8
     txNumber:
     - 1000
     rateControl:
@@ -89,7 +89,7 @@ test:
         tps: 300
     callback: benchmarks/samples/fabric/marbles/init.js
 
-  - label: init3
+  - label: init9
     txNumber:
     - 1000
     rateControl:
@@ -98,7 +98,7 @@ test:
         tps: 400
     callback: benchmarks/samples/fabric/marbles/init.js
 
-  - label: init3
+  - label: init10
     txNumber:
     - 1000
     rateControl:
