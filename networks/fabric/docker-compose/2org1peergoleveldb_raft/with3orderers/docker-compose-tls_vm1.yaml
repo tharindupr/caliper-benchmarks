@@ -78,59 +78,59 @@ services:
         - ca.org1.example.com
         # - ca.org2.example.com
 
-    # orderer1.example.com:
-    #     container_name: orderer1.example.com
-    #     image: hyperledger/fabric-orderer:1.4.1
-    #     environment:
-    #     - FABRIC_LOGGING_SPEC=grpc=debug:debug
-    #     - ORDERER_GENERAL_LISTENADDRESS=0.0.0.0
-    #     - ORDERER_GENERAL_GENESISMETHOD=file
-    #     - ORDERER_GENERAL_GENESISFILE=/etc/hyperledger/configtx/genesis.block
-    #     - ORDERER_GENERAL_LOCALMSPID=OrdererMSP
-    #     - ORDERER_GENERAL_LOCALMSPDIR=/etc/hyperledger/msp/orderer/msp
-    #     - ORDERER_GENERAL_TLS_ENABLED=true
-    #     - ORDERER_GENERAL_TLS_PRIVATEKEY=/etc/hyperledger/msp/orderer/tls/server.key
-    #     - ORDERER_GENERAL_TLS_CERTIFICATE=/etc/hyperledger/msp/orderer/tls/server.crt
-    #     - ORDERER_GENERAL_TLS_ROOTCAS=[/etc/hyperledger/msp/orderer/tls/ca.crt]
-    #     - ORDERER_GENERAL_CLUSTER_CLIENTCERTIFICATE=/etc/hyperledger/msp/orderer/tls/server.crt
-    #     - ORDERER_GENERAL_CLUSTER_CLIENTPRIVATEKEY=/etc/hyperledger/msp/orderer/tls/server.key
-    #     working_dir: /opt/gopath/src/github.com/hyperledger/fabric
-    #     command: orderer
-    #     ports:
-    #     - 8050:7050
-    #     volumes:
-    #     - ../../config_raft/:/etc/hyperledger/configtx
-    #     - ../../config_raft/crypto-config/ordererOrganizations/example.com/orderers/orderer1.example.com/:/etc/hyperledger/msp/orderer
-    #     depends_on:
-    #     - ca.org1.example.com
-    #     # - ca.org2.example.com
+    orderer1.example.com:
+        container_name: orderer1.example.com
+        image: hyperledger/fabric-orderer:1.4.1
+        environment:
+        - FABRIC_LOGGING_SPEC=grpc=debug:debug
+        - ORDERER_GENERAL_LISTENADDRESS=0.0.0.0
+        - ORDERER_GENERAL_GENESISMETHOD=file
+        - ORDERER_GENERAL_GENESISFILE=/etc/hyperledger/configtx/genesis.block
+        - ORDERER_GENERAL_LOCALMSPID=OrdererMSP
+        - ORDERER_GENERAL_LOCALMSPDIR=/etc/hyperledger/msp/orderer/msp
+        - ORDERER_GENERAL_TLS_ENABLED=true
+        - ORDERER_GENERAL_TLS_PRIVATEKEY=/etc/hyperledger/msp/orderer/tls/server.key
+        - ORDERER_GENERAL_TLS_CERTIFICATE=/etc/hyperledger/msp/orderer/tls/server.crt
+        - ORDERER_GENERAL_TLS_ROOTCAS=[/etc/hyperledger/msp/orderer/tls/ca.crt]
+        - ORDERER_GENERAL_CLUSTER_CLIENTCERTIFICATE=/etc/hyperledger/msp/orderer/tls/server.crt
+        - ORDERER_GENERAL_CLUSTER_CLIENTPRIVATEKEY=/etc/hyperledger/msp/orderer/tls/server.key
+        working_dir: /opt/gopath/src/github.com/hyperledger/fabric
+        command: orderer
+        ports:
+        - 8050:7050
+        volumes:
+        - ../../config_raft/:/etc/hyperledger/configtx
+        - ../../config_raft/crypto-config/ordererOrganizations/example.com/orderers/orderer1.example.com/:/etc/hyperledger/msp/orderer
+        depends_on:
+        - ca.org1.example.com
+        # - ca.org2.example.com
 
-    # orderer2.example.com:
-    #     container_name: orderer2.example.com
-    #     image: hyperledger/fabric-orderer:1.4.1
-    #     environment:
-    #     - FABRIC_LOGGING_SPEC=grpc=debug:debug
-    #     - ORDERER_GENERAL_LISTENADDRESS=0.0.0.0
-    #     - ORDERER_GENERAL_GENESISMETHOD=file
-    #     - ORDERER_GENERAL_GENESISFILE=/etc/hyperledger/configtx/genesis.block
-    #     - ORDERER_GENERAL_LOCALMSPID=OrdererMSP
-    #     - ORDERER_GENERAL_LOCALMSPDIR=/etc/hyperledger/msp/orderer/msp
-    #     - ORDERER_GENERAL_TLS_ENABLED=true
-    #     - ORDERER_GENERAL_TLS_PRIVATEKEY=/etc/hyperledger/msp/orderer/tls/server.key
-    #     - ORDERER_GENERAL_TLS_CERTIFICATE=/etc/hyperledger/msp/orderer/tls/server.crt
-    #     - ORDERER_GENERAL_TLS_ROOTCAS=[/etc/hyperledger/msp/orderer/tls/ca.crt]
-    #     - ORDERER_GENERAL_CLUSTER_CLIENTCERTIFICATE=/etc/hyperledger/msp/orderer/tls/server.crt
-    #     - ORDERER_GENERAL_CLUSTER_CLIENTPRIVATEKEY=/etc/hyperledger/msp/orderer/tls/server.key
-    #     working_dir: /opt/gopath/src/github.com/hyperledger/fabric
-    #     command: orderer
-    #     ports:
-    #     - 9050:7050
-    #     volumes:
-    #     - ../../config_raft/:/etc/hyperledger/configtx
-    #     - ../../config_raft/crypto-config/ordererOrganizations/example.com/orderers/orderer2.example.com/:/etc/hyperledger/msp/orderer
-    #     depends_on:
-    #     - ca.org1.example.com
-    #     # - ca.org2.example.com
+    orderer2.example.com:
+        container_name: orderer2.example.com
+        image: hyperledger/fabric-orderer:1.4.1
+        environment:
+        - FABRIC_LOGGING_SPEC=grpc=debug:debug
+        - ORDERER_GENERAL_LISTENADDRESS=0.0.0.0
+        - ORDERER_GENERAL_GENESISMETHOD=file
+        - ORDERER_GENERAL_GENESISFILE=/etc/hyperledger/configtx/genesis.block
+        - ORDERER_GENERAL_LOCALMSPID=OrdererMSP
+        - ORDERER_GENERAL_LOCALMSPDIR=/etc/hyperledger/msp/orderer/msp
+        - ORDERER_GENERAL_TLS_ENABLED=true
+        - ORDERER_GENERAL_TLS_PRIVATEKEY=/etc/hyperledger/msp/orderer/tls/server.key
+        - ORDERER_GENERAL_TLS_CERTIFICATE=/etc/hyperledger/msp/orderer/tls/server.crt
+        - ORDERER_GENERAL_TLS_ROOTCAS=[/etc/hyperledger/msp/orderer/tls/ca.crt]
+        - ORDERER_GENERAL_CLUSTER_CLIENTCERTIFICATE=/etc/hyperledger/msp/orderer/tls/server.crt
+        - ORDERER_GENERAL_CLUSTER_CLIENTPRIVATEKEY=/etc/hyperledger/msp/orderer/tls/server.key
+        working_dir: /opt/gopath/src/github.com/hyperledger/fabric
+        command: orderer
+        ports:
+        - 9050:7050
+        volumes:
+        - ../../config_raft/:/etc/hyperledger/configtx
+        - ../../config_raft/crypto-config/ordererOrganizations/example.com/orderers/orderer2.example.com/:/etc/hyperledger/msp/orderer
+        depends_on:
+        - ca.org1.example.com
+        # - ca.org2.example.com
 
     peer0.org1.example.com:
         container_name: peer0.org1.example.com
@@ -164,6 +164,7 @@ services:
         depends_on:
         - orderer0.example.com
         - orderer1.example.com
+        - orderer2.example.com
 
     # peer0.org2.example.com:
     #     container_name: peer0.org2.example.com
