@@ -27,7 +27,7 @@ info:
   Version: 1.4.1
   Size: 2 Orgs with 1 Peer
   Orderer: Raft
-  Distribution: Single Host
+  Distribution: Multi Host
   StateDB: GoLevelDB
 
 clients:
@@ -62,7 +62,7 @@ channels:
     created: false
     orderers:
     - orderer0.example.com
-    - orderer1.example.com
+    # - orderer1.example.com
     peers:
       peer0.org1.example.com:
         eventSource: true
