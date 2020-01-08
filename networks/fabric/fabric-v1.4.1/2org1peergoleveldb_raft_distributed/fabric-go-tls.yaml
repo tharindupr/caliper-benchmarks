@@ -19,9 +19,9 @@ mutual-tls: false
 
 caliper:
   blockchain: fabric
-  command:
-    start: export FABRIC_VERSION=1.4.1;docker-compose -f networks/fabric/docker-compose/2org1peergoleveldb_raft/docker-compose-tls.yaml up -d;sleep 3s
-    end: docker-compose -f networks/fabric/docker-compose/2org1peergoleveldb_raft/docker-compose-tls.yaml down;(test -z \"$(docker ps -aq)\") || docker rm $(docker ps -aq);(test -z \"$(docker images dev* -q)\") || docker rmi $(docker images dev* -q);rm -rf /tmp/hfc-*
+  # command:
+  #   start: export FABRIC_VERSION=1.4.1;docker-compose -f networks/fabric/docker-compose/2org1peergoleveldb_raft/docker-compose-tls.yaml up -d;sleep 3s
+  #   end: docker-compose -f networks/fabric/docker-compose/2org1peergoleveldb_raft/docker-compose-tls.yaml down;(test -z \"$(docker ps -aq)\") || docker rm $(docker ps -aq);(test -z \"$(docker images dev* -q)\") || docker rmi $(docker images dev* -q);rm -rf /tmp/hfc-*
 
 info:
   Version: 1.4.1
@@ -76,18 +76,18 @@ channels:
       language: golang
       path: fabric/samples/marbles/go
       metadataPath: src/fabric/samples/marbles/go/metadata
-    - id: drm
-      version: v0
-      language: golang
-      path: fabric/scenario/drm/go
-    - id: simple
-      version: v0
-      language: golang
-      path: fabric/scenario/simple/go
-    - id: smallbank
-      version: v0
-      language: golang
-      path: fabric/scenario/smallbank/go
+    # - id: drm
+    #   version: v0
+    #   language: golang
+    #   path: fabric/scenario/drm/go
+    # - id: simple
+    #   version: v0
+    #   language: golang
+    #   path: fabric/scenario/simple/go
+    # - id: smallbank
+    #   version: v0
+    #   language: golang
+    #   path: fabric/scenario/smallbank/go
 
 organizations:
   Org1:
@@ -114,19 +114,19 @@ organizations:
 
 orderers:
   orderer0.example.com:
-    url: grpcs://localhost:7050
+    url: grpcs://10.128.0.3:7050
     grpcOptions:
       ssl-target-name-override: orderer0.example.com
     tlsCACerts:
         path: networks/fabric/config_raft/crypto-config/ordererOrganizations/example.com/orderers/orderer0.example.com/msp/tlscacerts/tlsca.example.com-cert.pem
   orderer1.example.com:
-    url: grpcs://localhost:8050
+    url: grpcs://10.128.0.3:8050
     grpcOptions:
         ssl-target-name-override: orderer1.example.com
     tlsCACerts:
         path: networks/fabric/config_raft/crypto-config/ordererOrganizations/example.com/orderers/orderer1.example.com/msp/tlscacerts/tlsca.example.com-cert.pem
   orderer2.example.com:
-      url: grpcs://localhost:9050
+      url: grpcs://10.128.0.3:9050
       grpcOptions:
           ssl-target-name-override: orderer2.example.com
       tlsCACerts:
@@ -134,7 +134,7 @@ orderers:
 
 peers:
   peer0.org1.example.com:
-    url: grpcs://localhost:7051
+    url: grpcs://10.128.0.3:7051
     grpcOptions:
       ssl-target-name-override: peer0.org1.example.com
       grpc.keepalive_time_ms: 600000
@@ -142,7 +142,7 @@ peers:
         path: networks/fabric/config_raft/crypto-config/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/msp/tlscacerts/tlsca.org1.example.com-cert.pem
 
   peer0.org2.example.com:
-    url: grpcs://localhost:8051
+    url: grpcs://10.128.0.5:8051
     grpcOptions:
       ssl-target-name-override: peer0.org2.example.com
       grpc.keepalive_time_ms: 600000
@@ -151,7 +151,7 @@ peers:
 
 certificateAuthorities:
   ca.org1.example.com:
-    url: https://localhost:7054
+    url: https://10.128.0.3:7054
     httpOptions:
       verify: false
     tlsCACerts:
@@ -161,7 +161,7 @@ certificateAuthorities:
       enrollSecret: adminpw
 
   ca.org2.example.com:
-    url: https://localhost:8054
+    url: https://10.128.0.5:8054
     httpOptions:
       verify: false
     tlsCACerts:
