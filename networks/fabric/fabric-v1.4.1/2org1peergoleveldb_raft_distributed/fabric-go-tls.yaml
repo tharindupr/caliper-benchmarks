@@ -63,7 +63,7 @@ channels:
     orderers:
     - orderer0.example.com
     - orderer1.example.com
-    # - orderer2.example.com
+    - orderer2.example.com
     peers:
       peer0.org1.example.com:
         eventSource: true
@@ -125,12 +125,12 @@ orderers:
         ssl-target-name-override: orderer1.example.com
     tlsCACerts:
         path: networks/fabric/config_raft/crypto-config/ordererOrganizations/example.com/orderers/orderer1.example.com/msp/tlscacerts/tlsca.example.com-cert.pem
-  # orderer2.example.com:
-  #     url: grpcs://10.128.0.3:9050
-  #     grpcOptions:
-  #         ssl-target-name-override: orderer2.example.com
-  #     tlsCACerts:
-  #         path: networks/fabric/config_raft/crypto-config/ordererOrganizations/example.com/orderers/orderer2.example.com/msp/tlscacerts/tlsca.example.com-cert.pem
+  orderer2.example.com:
+      url: grpcs://10.128.0.5:9050
+      grpcOptions:
+          ssl-target-name-override: orderer2.example.com
+      tlsCACerts:
+          path: networks/fabric/config_raft/crypto-config/ordererOrganizations/example.com/orderers/orderer2.example.com/msp/tlscacerts/tlsca.example.com-cert.pem
 
 peers:
   peer0.org1.example.com:
