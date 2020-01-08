@@ -120,7 +120,7 @@ orderers:
     tlsCACerts:
         path: networks/fabric/config_raft/crypto-config/ordererOrganizations/example.com/orderers/orderer0.example.com/msp/tlscacerts/tlsca.example.com-cert.pem
   orderer1.example.com:
-    url: grpcs://10.128.0.3:8050
+    url: grpcs://10.128.0.5:8050
     grpcOptions:
         ssl-target-name-override: orderer1.example.com
     tlsCACerts:
